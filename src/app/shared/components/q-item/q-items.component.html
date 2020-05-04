@@ -1,0 +1,29 @@
+<div *ngFor="let q of questions; let i = index;">
+  <a data-toggle="collapse" [href]="'#collapseExample'+i"
+     role="definition" aria-expanded="false"
+     style="color: #212529">{{q.title}}
+  </a>
+  <a [routerLink]="'/question-base/'+q._id">
+    <i class="fa fa-angle-double-right float-right" [style.fontSize]="'x-large'"></i>
+  </a>
+  <div [style.paddingTop]="'10px'">
+    <span class="badge badge-pill" [ngClass]="getLevelsColor(q.level)">{{q.level}}</span>
+    <small class="text-muted q-desc"> {{q.created | date}}</small>
+    <small class="text-muted q-desc"> (x ans)</small>
+    <small class="text-muted q-desc"> (y comm)</small>
+    <span class="badge tag float-right"
+          [ngClass]="getTagClass(tag)"
+          *ngFor="let tag of q._tags">{{tag.value}}</span>
+  </div>
+  <!--[ngClass]="{'show': i === 0}"-->
+  <div class="collapse" aria-expanded="true"
+       [id]="'collapseExample'+i" style="padding-top: 7px">
+    <div class="card card-body" *ngIf="q.answers">
+     {{q.answers[0].text}}
+    </div>
+    <div style="text-align: right;height: 12px;">
+      <a [routerLink]="'/question-base/'+q._id">Read more...</a>
+    </div>
+  </div>
+  <hr *ngIf="i < questions.length - 1">
+</div>

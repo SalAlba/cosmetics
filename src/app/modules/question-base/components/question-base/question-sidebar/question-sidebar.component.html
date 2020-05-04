@@ -1,0 +1,48 @@
+<h1 class="my-4">Questions Database</h1>
+
+<div class="my-4" [style.textAlign]="'right'">
+  <span class="btn btn-success w-100" *ngIf="selectedCategory" (click)="onAddQuestion($event)">Add new question</span>
+</div>
+
+<div>
+  <select class="form-control" id="groupsSelect" [style.height]="'3em'"
+          [(ngModel)]="selectedGroup" (ngModelChange)="onSelectGroup($event)">
+    <option  [ngValue]="null" selected disabled>Select group...</option>
+    <option *ngFor="let group of groups" [ngValue]="group">{{group.name}}</option>
+  </select>
+  <br>
+</div>
+<!-- /.groups -->
+
+<div class="list-group" *ngIf="categories">
+        <span (click)="onSelectCategory(category)"
+              class="list-group-item btn-link" [ngClass]="{'active': category._id === selectedCategory?._id}"
+              *ngFor="let category of categories">{{category.name}}</span>
+</div>
+<!-- /.categories -->
+<br>
+
+<div [style.textAlign]="'center'" *ngIf="selectedCategory">
+  <div class="btn-group">
+
+    <button type="button" class="btn" *ngFor="let lvl of selectedGroup.levels"
+            style="text-transform: capitalize"
+            [ngClass]="getLevelsColor(lvl)"
+            (click)="setLevel(lvl)">{{lvl}}</button>
+  </div>
+</div>
+<!-- /.levels -->
+
+<div class="card my-4" *ngIf="selectedCategory">
+  <!--      <h5 class="card-header">Tags</h5>-->
+  <div class="card-body">
+    <tag-input [(ngModel)]="selectedTags" (ngModelChange)="updateSelectedTags($event)" theme='foundation-theme'></tag-input>
+    <!--
+     <a href="https://www.npmjs.com/package/ngx-chips">Add this chips...</a>
+     <br>
+     <a href="https://angular-mfppay.stackblitz.io/">Demo </a>
+     -->
+  </div>
+</div>
+<!-- /.tags -->
+<br>

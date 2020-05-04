@@ -1,0 +1,174 @@
+<div class="card card-outline-secondary my-4" *ngIf="question">
+  <div class="card-header">
+    <div class="btn-group w-100">
+      <a [routerLink]="'/question-base'" [style.fontSize]="'x-large'">
+        <i class="fa fa-angle-double-left"></i> Back to list
+      </a>
+      <span class="btn-link" style="font-size: x-large;right: 4em;position: absolute;"  (click)="alert()">
+        <i class="fa fa-angle-left"></i> Back
+      </span>
+      <span class="btn-link" style="font-size: x-large;right: 0;position: absolute;" (click)="alert()">
+        Next <i class="fa fa-angle-right"></i>
+      </span>
+
+    </div>
+  </div>
+  <div class="card-body">
+    <!-- question -->
+    <div class="row">
+      <div class="col-md">
+        <h2>{{question.title}}</h2>
+      </div>
+      <div class="col-md-3">
+        <span class="badge tag badge-primary"
+              *ngFor="let tag of question._tags">{{tag.value}}</span>
+      </div>
+    </div>
+    <p class="lead float-right">{{question.created | date: 'd MMM y HH:mm '}}</p>
+    <p class="lead">
+      by
+      <i>user_login</i>
+      <span class="badge badge-pill" [ngClass]="getLevelsColor(question.level)"
+            [style.marginLeft]="'1em'">{{question.level}}</span>
+    </p>
+    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="" hidden>
+    <hr hidden>
+    <markdown [data]="question.description"></markdown>
+    <!-- /.question -->
+
+    <!-- test answer -->
+    <div>
+      <hr>
+      <span class="thumbs-group" style="font-size: larger;font-weight: 700;">
+        <fa-icon class="minus" [icon]="faMinus"></fa-icon>
+        <span style="padding-right: 5px;color: #28A745">5</span>
+        <fa-icon class="plus" [icon]="faPlus"></fa-icon>
+      </span>
+      <p class="card-text">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+        Cras purus
+        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+        fringilla. Donec lacinia congue felis in faucibus.
+        <span class="mt-0 btn-link">@name</span>
+        <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+      </p>
+
+      <hr>
+      <!-- comments -->
+      <div class="media mb-2" style="font-size: smaller;">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/30x30" alt="">
+        <div class="media-body">
+          Lorem ipsum dolor s!
+          <span class="mt-0 btn-link">@name</span>
+          <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+        </div>
+      </div>
+
+      <div class="media mb-2" style="font-size: smaller;">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/30x30" alt="" style="margin: 0 auto;">
+        <div class="media-body">
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+          odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+          fringilla. Donec lacinia congue felis in faucibus.
+          <span class="mt-0 btn-link">@name</span>
+          <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+          <div class="media mt-2">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/30x30" alt="" style="margin: 0 auto;">
+            <div class="media-body">
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla. Donec lacinia congue felis in faucibus.
+              <span class="mt-0 btn-link">@name</span>
+              <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+            </div>
+          </div>
+          <div class="media mt-2">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/30x30" alt="" style="margin: 0 auto;">
+            <div class="media-body">
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+              odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+              fringilla. Donec lacinia congue felis in faucibus.
+              <span class="mt-0 btn-link">@name</span>
+              <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.comments -->
+    </div>
+    <br>
+    <div *ngIf="!addComment">
+              <span class="btn-link" (click)="alert()" style="cursor: pointer">
+                Add comment
+              </span>
+    </div>
+    <div class="form-group" *ngIf="addComment">
+              <textarea class="form-control" rows="3"
+                        style="margin-top: 0px; margin-bottom: 0px; height: 43px;"></textarea>
+      <br>
+      <button type="button" class="btn btn-primary">Leave a Comment</button>
+    </div>
+    <!-- /.test answer -->
+
+    <!-- answers -->
+    <div *ngFor="let ans of answers">
+      <hr>
+      <span class="thumbs-group" style="font-size: larger;font-weight: 700;">
+        <fa-icon class="minus" [icon]="faMinus"></fa-icon>
+        <span style="padding-right: 5px;color: #28A745">5</span>
+        <fa-icon class="plus" [icon]="faPlus"></fa-icon>
+      </span>
+      <p class="card-text">
+        <markdown [data]="ans.text"></markdown>
+        <span class="mt-0 btn-link">@name</span>
+        <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+      </p>
+
+      <div *ngIf="!addComment">
+              <span class="btn-link" (click)="alert()" style="cursor: pointer">
+                Add comment
+              </span>
+      </div>
+      <div class="form-group" *ngIf="addComment">
+              <textarea class="form-control" rows="3"
+                        style="margin-top: 0px; margin-bottom: 0px; height: 43px;"></textarea>
+        <br>
+        <button type="button" class="btn btn-primary">Leave a Comment</button>
+      </div>
+    </div>
+    <!-- /.answers -->
+
+    <!-- add answer -->
+    <hr>
+    <div *ngIf="!addAnswer">
+        <span class="btn-link" (click)="addAnswer=true" style="cursor: pointer">
+          Add answer
+        </span>
+    </div>
+
+    <div *ngIf="addAnswer">
+      <span class="thumbs-group" style="font-size: larger;font-weight: 700;">
+        <fa-icon class="minus" [icon]="faMinus"></fa-icon>
+        <span style="padding-right: 5px;color: #28A745">0</span>
+        <fa-icon class="plus" [icon]="faPlus"></fa-icon>
+      </span>
+      <p class="card-text">
+        <markdown [data]="markdownText"></markdown>
+        <span class="mt-0 btn-link">@name</span>
+        <span style="font-size: small; color: darkgray"> 1 Jan 2020 at 19:20</span>
+      </p>
+    </div>
+
+    <div class="my-4" *ngIf="addAnswer">
+      <angular-markdown-editor
+        textareaId="editor" rows="12" [options]="editorOptions"
+        name="markdownText" [(ngModel)]="markdownText">
+      </angular-markdown-editor>
+      <br>
+      <button type="button" class="btn btn-primary float-right" (click)="onAnswerSend()">Add</button>
+      <button type="button" class="btn btn-secondary float-right" (click)="addAnswer = false"
+              style="margin-right: 10px">Cancel</button>
+    </div>
+    <!-- /.add answer -->
+
+  </div>
+</div>

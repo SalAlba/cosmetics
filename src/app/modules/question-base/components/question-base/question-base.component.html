@@ -1,0 +1,97 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-3">
+      <app-question-sidebar
+        (addQuestionEvent)="addNew()"
+        (findQuestion)="getQuestions($event)"
+        [search]="searchedText">
+      </app-question-sidebar>
+    </div>
+    <!-- /.sidebar col-lg-3 -->
+
+    <div class="col-lg-9">
+
+      <div class="card card-outline-secondary my-4" *ngIf="newQuestion">
+        <div class="card-body">
+
+
+          <form (ngSubmit)="sendQuestion(form)" #form="ngForm">
+            <div class="form-group" [ngClass]="{ 'was-validated':newTitle.invalid&&newTitle.touched}">
+              <label class="control-label " for="newTitle">
+                Add new question form
+              </label>
+              <span [style.float]="'right'"><b>{{selectedGroup?.name}}</b>({{selectedCategory?.name}})</span>
+              <input class="form-control" placeholder="Question..." id="newTitle"
+                     type="text" ngModel name="newTitle" #newTitle="ngModel" required/>
+            </div>
+            <div class="form-group" *ngIf="addDescriptionFlag">
+              <angular-markdown-editor
+                textareaId="newDescription" rows="12" [options]="editorOptions"
+                name="newDescription" ngModel>
+              </angular-markdown-editor>
+            </div>
+            <div class="form-group" [ngClass]="{ 'was-validated': newTags.invalid && newTags.touched}">
+              <div class="row">
+                <div class="col-md-8">
+                  <tag-input id="newTags" name="newTags" ngModel #newTags="ngModel" required
+                             theme='foundation-theme'></tag-input>
+                </div>
+                <div class="col-md" [style.textAlign]="'right'">
+                  <div class="btn-group" style="padding-top: .6rem;">
+                    <button type="button" class="btn" *ngFor="let lvl of selectedGroup?.levels"
+                            style="text-transform: capitalize"
+                            [ngClass]="getLevelsColor(lvl)"
+                            (click)="setLevelForNewQuestion(lvl)">{{lvl}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <span class="btn-link"
+                    (click)="addDescriptionFlag = !addDescriptionFlag">{{addDescriptionFlag ? 'Hide description' : 'Add description'}}</span>
+              <span class="text-danger" style="margin-left: 3em" hidden>
+                * Error xxxxxx x xxx x xx x x x x xxxxx xxx xxx
+              </span>
+              <button class="btn btn-primary float-right" type="submit" [disabled]="!form.valid">Submit</button>
+              <button class="btn btn-secondary float-right" (click)="newQuestion = null"
+                      type="button" style="margin-right: 10px">
+                Cancel
+              </button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+      <!-- /.add new question card -->
+
+
+      <router-outlet></router-outlet>
+      <!-- /.app-questions-view -->
+
+
+      <div class="card card-outline-secondary my-4" *ngIf="selectedGroup">
+        <div class="card-header">
+          <div class="input-group">
+            <input type="text" (keyup)="keyUp.next($event)" class="form-control" placeholder="Find question...">
+            <span class="input-group-btn search-questions">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!questions || questions.length===0" [style.textAlign]="'center'">Questions not found</div>
+          <app-q-items [questions]="questions" [selectedTags]="selectedTags"
+                       [levels]="selectedGroup?.levels"></app-q-items>
+        </div>
+      </div>
+      <!-- /.questions card -->
+
+    </div>
+    <!-- /. body col-lg-9 -->
+
+  </div>
+
+</div>

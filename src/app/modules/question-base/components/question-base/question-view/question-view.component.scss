@@ -1,0 +1,47 @@
+$success: #28A745;
+$danger: #DC3545;
+.thumbs-group {
+  margin-right: 5px;
+  display: inline-flex;
+  color: rgba(0, 0, 0, 0.25);
+  & fa-icon.plus:hover{
+    color: $success;
+  }
+  & fa-icon.minus:hover{
+    color: $danger;
+  }
+}
+
+fa-icon {
+  padding-right: 6px;
+  cursor: pointer;
+  font-size: large;
+  &.plus.select {
+    color: $success;
+  }
+  &.minus.select {
+    color: $danger;
+  }
+}
+::ng-deep #editor, ::ng-deep .md-preview {
+  padding: 0 12px 5px;
+}
+
+.badge-pill {
+  font-weight: 400;
+}
+.tag {
+  float: right;
+  font-size: large;
+  font-weight: 400;
+  border-radius: 25px;
+  padding: 4px 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+@media only screen and (max-width: 768px) {
+  .tag {
+    float: left;
+  }
+}
+

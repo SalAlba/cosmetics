@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" [hidden]="showBasicPost((post | async)?.postType)">
+        <h1>{{(post | async)?.title}}</h1>
+        <!-- <p [innerHTML]="post.description"></p> -->
+        <p [innerHTML]="(post | async)?.description"></p>
+
+        <h1>{{(post | async)?.postType}}</h1>
+    </div>
+    <div class="col-8" [hidden]="!showBasicPost((post | async)?.postType)">
+        <div markdown katex [src]="(post | async)?.markdownUrl"  (error)="onError($event)"></div>
+    </div>
+    <div class="col-2"></div>
+</div>
