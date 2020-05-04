@@ -4,9 +4,10 @@ import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RouterModule} from '@angular/router';
 import {AngularMarkdownEditorModule} from 'angular-markdown-editor';
+import { BestsellerComponent } from './components/bestseller/bestseller.component';
 
 @NgModule({
-  declarations: [QItemsComponent],
+  declarations: [BestsellerComponent, QItemsComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -14,6 +15,6 @@ import {AngularMarkdownEditorModule} from 'angular-markdown-editor';
     AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' })
   ],
   providers: [],
-  exports: [QItemsComponent, AngularMarkdownEditorModule]
+  exports: [BestsellerComponent, QItemsComponent, AngularMarkdownEditorModule]
 })
 export class SharedModule { }
