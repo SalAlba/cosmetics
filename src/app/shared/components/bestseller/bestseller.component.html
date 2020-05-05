@@ -1,33 +1,60 @@
 <div class="row text-center">
 
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                    necessitatibus
-                    neque.</p>
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
+        <div class="card">
+            <img class="card-img-top" [src]="item.basicImgUrl" alt="">
+            <!-- IF -->
+            <div *ngIf="showDiscount(item); else elseDiscount" class="card-body">
+                <h4 class="card-title">{{item.price}}</h4>
+                <p class="card-text">{{item.title}}</p>
             </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary">Find Out More!</a>
+            <!-- Else -->
+            <ng-template #elseDiscount>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span class="badge badge-success">{{-item.discount}} %</span>
+                        <del>{{item.price}} $</del>
+                    </p>
+                    <h4 class="card-title">{{countPriceUsingDiscount(item)}} $</h4>
+                    <p class="card-text">{{item.title}}</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row text-center">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]" [src]="item.basicImgUrl" data-holder-rendered="true">
+            <div class="card-body">
+                <p class="card-text">{{item.title}}</p>
+                <!-- IF -->
+                <div *ngIf="showDiscount(item); else elseDiscount">
+                    <p class="card-text text-muted">{{item.price}} $</p>
+                </div>
+                <!-- Else -->
+                <ng-template #elseDiscount>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
+                                <del>{{item.price}}$</del>
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
+                                {{countPriceUsingDiscount(item)}} $
+                            </button>
+                        </div>
+                        <small class="text-muted">
+                            <span class="badge badge-danger">{{-item.discount}} %</span>
+                        </small>
+                    </div>
+                </ng-template>
+                <!-- / end if -->
             </div>
         </div>
     </div>
-
-    <!-- <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of postes | async">
-        <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-                <h4 class="card-title">{{item.title}}</h4>
-                <p class="card-text">{{item.description}}</p>
-            </div>
-            <div class="card-footer">
-                <button (click)="show(item)" class="btn btn-primary">Find Out More!</button>
-            </div>
-        </div>
-    </div> -->
-
-
 </div>
 <!-- /.row -->

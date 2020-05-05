@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from "../../../shared/models/product.model";
 
+import { PRODUCTS } from "../../../shared/mock/mock-product";
 
 @Injectable({
   providedIn: 'root'
@@ -20,21 +21,23 @@ export class ProductsService {
 
   /*** GETTERS AND SETTERS*/
 
-  getGroupsSubject(): Observable<any> {
+  getProductsSubject(): Observable<any> {
     return this._products.asObservable();
   }
 
-  getSelectedGroupSubject(): Observable<any> {
+  getSelectedProductSubject(): Observable<any> {
     return this._selectedProduct.asObservable();
   }
 
-  setSelectedGroup(gr: Product) {
+  setSelectedProduct(gr: Product) {
     this._selectedProduct.next(gr);
   }
 
   /*** HTTP METHODS */
   public getAllBestSellerProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.BASIC_URL}/products/bestseller`);
+    this._products.next(PRODUCTS)
+    return this._products;
+    // return this.http.get<Product[]>(`${this.BASIC_URL}/products/bestseller`);
   }
 
   public getAllProducts(): Observable<Product[]> {

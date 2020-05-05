@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 
 // // services ...
 import { ProductsService } from "../../../core/http/products/products.service";
+import { Product } from '../../models/product.model';
 
 // // models ...
 // import { Post } from '../../../../shared/models/post.model';
@@ -19,9 +20,12 @@ import { ProductsService } from "../../../core/http/products/products.service";
 export class BestsellerComponent implements OnInit {
 
   // POSTES_BASIC_URL = '/postes';
-  // postes: Observable<Post[]>;
+  // products: Observable<Product[]>;
+  products: Product[];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {
+    this.productsService.getAllBestSellerProducts().subscribe(d => this.products = d);
+  }
 
   ngOnInit(): void {
     //   this.postes = this.postesService.get_all_postes();
@@ -35,11 +39,21 @@ export class BestsellerComponent implements OnInit {
   }
 
 
-  // public show(post: Post) {
-  //   console.log('SELECTED POST : ', post);
-  //   this.postesService.set_selected_poste(post);
-  //   this.router.navigate([this.POSTES_BASIC_URL, post.link]);
-  //   // return [this.POSTES_BASIC_URL, post.link]
-  // }
+  public show(product: Product) {
+    this.productsService.setSelectedProduct(product);
+    // this.router.navigate([this.POSTES_BASIC_URL, post.link]);
+    // return [this.POSTES_BASIC_URL, post.link]
+  }
+
+  public showDiscount(product: Product) {
+    if (product.discount > 0) {
+      return false
+    }
+    return true;
+  }
+
+  public countPriceUsingDiscount(product: Product) {
+    return product.price - (product.discount / 100);
+  }
 
 }
