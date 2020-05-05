@@ -1,3 +1,9 @@
 footer {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  color: aliceblue;
+}
+
+.powered a{
+  color: #ffffff;
+  text-decoration: none;
 }
