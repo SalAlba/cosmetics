@@ -1,0 +1,21 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li *ngFor="let item of slides" data-target="#myCarousel" attr.data-slide-to="{{item.order - 1}}"
+            [ngClass]="item.status"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let item of slides let i=index" [ngClass]="item.status">
+            <h1>{{item.img}}</h1>
+            <img class="first-slide w-100" [src]="item.img" alt="First slide">
+            <div class="container" *ngIf="item.hasDescription" [innerHTML]="item.description"></div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
