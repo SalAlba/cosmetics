@@ -11,6 +11,8 @@ export class Product {
     created?: string;
     updated?: string;
 
+
+    // Brief description
     unitPrice?: number;
     quantity?: number;
     discount?: number;

@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {AngularMarkdownEditorModule} from 'angular-markdown-editor';
 import { BestsellerComponent } from './components/bestseller/bestseller.component';
 import { SliderComponent } from './components/slider/slider.component';
+// import { PrivacyPloicyComponent } from './components/privacy-ploicy/privacy-ploicy.component';
 
 @NgModule({
   declarations: [SliderComponent, BestsellerComponent, QItemsComponent],
