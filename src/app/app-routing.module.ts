@@ -2,8 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
+import {PrivacyPloicyComponent} from "./core/privacy-ploicy/privacy-ploicy.component";
 
 const routes: Routes = [
+  {path: 'privacy-policy ', component: PrivacyPloicyComponent},
   {
     path: 'home',
     // loadChildren: './modules/home/home.module#HomeModule'
@@ -16,6 +18,10 @@ const routes: Routes = [
   {
     path: 'question-base',
     loadChildren: () => import('./modules/question-base/question-base.module').then(mod => mod.QuestionBaseModule)
+  },
+  {
+    path: 'basket',
+    loadChildren: () => import('./modules/basket/basket.module').then(mod => mod.BasketModule)
   },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
