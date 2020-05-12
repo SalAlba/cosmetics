@@ -11,6 +11,7 @@ export class Product {
     created?: string;
     updated?: string;
 
-    price?: number;
+    unitPrice?: number;
+    quantity?: number;
     discount?: number;
 }

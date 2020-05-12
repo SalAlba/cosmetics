@@ -53,7 +53,7 @@ export class BestsellerComponent implements OnInit {
   }
 
   public countPriceUsingDiscount(product: Product) {
-    return product.price - (product.discount / 100);
+    return product.unitPrice - (product.discount / 100);
   }
 
 }

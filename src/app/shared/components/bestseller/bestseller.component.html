@@ -5,7 +5,7 @@
             <img class="card-img-top" [src]="item.basicImgUrl" alt="">
             <!-- IF -->
             <div *ngIf="showDiscount(item); else elseDiscount" class="card-body">
-                <h4 class="card-title">{{item.price}}</h4>
+                <h4 class="card-title">{{item.unitPrice}}</h4>
                 <p class="card-text">{{item.title}}</p>
             </div>
             <!-- Else -->
@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <p class="card-text">
                         <span class="badge badge-success">{{-item.discount}} %</span>
-                        <del>{{item.price}} $</del>
+                        <del>{{item.unitPrice}} $</del>
                     </p>
                     <h4 class="card-title">{{countPriceUsingDiscount(item)}} $</h4>
                     <p class="card-text">{{item.title}}</p>
@@ -34,14 +34,14 @@
                 <p class="card-text">{{item.title}}</p>
                 <!-- IF -->
                 <div *ngIf="showDiscount(item); else elseDiscount">
-                    <p class="card-text text-muted">{{item.price}} $</p>
+                    <p class="card-text text-muted">{{item.unitPrice}} $</p>
                 </div>
                 <!-- Else -->
                 <ng-template #elseDiscount>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
-                                <del>{{item.price}}$</del>
+                                <del>{{item.unitPrice}}$</del>
                             </button>
                             <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
                                 {{countPriceUsingDiscount(item)}} $
