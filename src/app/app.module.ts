@@ -6,7 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
 import {HomeModule} from './modules/home/home.module';
 import {PostesModule} from './modules/postes/postes.module';
-import { BasketModule } from "./modules/basket/basket.module";
+import {BasketModule} from "./modules/basket/basket.module";
 import {QuestionBaseModule} from './modules/question-base/question-base.module';
 import {MarkdownModule} from 'ngx-markdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -25,7 +25,7 @@ import {AppComponent} from './app.component';
     MarkdownModule.forRoot({loader: HttpClient}),
     CoreModule,
     SharedModule,
-    HomeModule, // in anular page ex. no import !!!  https://stackblitz.com/angular/aqqyljyojye
+    HomeModule, // in angular page ex. no import !!!  https://stackblitz.com/angular/aqqyljyojye
     BasketModule,
     PostesModule,
     QuestionBaseModule,

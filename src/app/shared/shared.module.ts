@@ -1,20 +1,27 @@
 import {NgModule} from '@angular/core';
-import {QItemsComponent} from './components/q-item/q-items.component';
 import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RouterModule} from '@angular/router';
 import {AngularMarkdownEditorModule} from 'angular-markdown-editor';
-import { BestsellerComponent } from './components/bestseller/bestseller.component';
+
+// modules ...
+import { SharedRoutingModule } from "./shared-routing.module";
+
+// components ...
+import {QItemsComponent} from './components/q-item/q-items.component';
 import { SliderComponent } from './components/slider/slider.component';
-// import { PrivacyPloicyComponent } from './components/privacy-ploicy/privacy-ploicy.component';
+import { BestsellerComponent } from './components/bestseller/bestseller.component';
+import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-policy.component";
+
 
 @NgModule({
-  declarations: [SliderComponent, BestsellerComponent, QItemsComponent],
+  declarations: [PrivacyPolicyComponent, SliderComponent, BestsellerComponent, QItemsComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
     RouterModule,
-    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' })
+    AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
+    SharedRoutingModule
   ],
   providers: [],
   exports: [SliderComponent, BestsellerComponent, QItemsComponent, AngularMarkdownEditorModule]
