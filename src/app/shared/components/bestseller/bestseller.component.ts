@@ -56,4 +56,8 @@ export class BestsellerComponent implements OnInit {
     return product.unitPrice - (product.discount / 100);
   }
 
+  public getUrl(product: Product) {
+    this.productsService.setSelectedProduct(product);
+    return '/product/' + product.link;
+  }
 }

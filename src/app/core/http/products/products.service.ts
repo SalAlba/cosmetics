@@ -25,12 +25,12 @@ export class ProductsService {
     return this._products.asObservable();
   }
 
-  getSelectedProductSubject(): Observable<any> {
+  getSelectedProductSubject(): Observable<Product> {
     return this._selectedProduct.asObservable();
   }
 
-  setSelectedProduct(gr: Product) {
-    this._selectedProduct.next(gr);
+  setSelectedProduct(product: Product) {
+    this._selectedProduct.next(product);
   }
 
   /*** HTTP METHODS */
@@ -46,5 +46,11 @@ export class ProductsService {
 
   public getProductById(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.BASIC_URL}/products/${id}`);
+  }
+
+  public getProductByLink(link: string): Observable<Product> {
+    this.setSelectedProduct(PRODUCTS.find(d => d.link === link));
+    // return this.http.get<Product>(`${this.BASIC_URL}/products/link/${link}`);
+    return this._selectedProduct;
   }
 }

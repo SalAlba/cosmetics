@@ -5,7 +5,9 @@ export class Product {
     // postType?: string;
     // description?: string;
     // markdownUrl?: string;
-    // link?: string;
+    link?: string;
+    basicImgUrl?: string;
+    imgs?: string[];
     tags?: string[];
     visible: boolean;
     created?: string;

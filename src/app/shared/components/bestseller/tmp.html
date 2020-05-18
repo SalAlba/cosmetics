@@ -1,0 +1,94 @@
+<div class="row text-center">
+
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
+            <div class="card">
+                <img class="card-img-top" [src]="item.basicImgUrl" alt="">
+                <!-- IF -->
+                <div *ngIf="showDiscount(item); else elseDiscount" class="card-body">
+                    <h4 class="card-title">{{item.unitPrice}}</h4>
+                    <p class="card-text">{{item.title}}</p>
+                </div>
+                <!-- Else -->
+                <ng-template #elseDiscount>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="badge badge-success">{{-item.discount}} %</span>
+                            <del>{{item.unitPrice}} $</del>
+                        </p>
+                        <h4 class="card-title">{{countPriceUsingDiscount(item)}} $</h4>
+                        <p class="card-text">{{item.title}}</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    
+    <!-- /.row -->
+    
+    <div class="row text-center">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top"
+                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                    alt="Thumbnail [100%x225]" [src]="item.basicImgUrl" data-holder-rendered="true">
+                <div class="card-body">
+                    <p class="card-text">{{item.title}}</p>
+                    <!-- IF -->
+                    <div *ngIf="showDiscount(item); else elseDiscount">
+                        <p class="card-text text-muted">{{item.unitPrice}} $</p>
+                    </div>
+                    <!-- Else -->
+                    <ng-template #elseDiscount>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
+                                    <del>{{item.unitPrice}}$</del>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" disabled="disabled">
+                                    {{countPriceUsingDiscount(item)}} $
+                                </button>
+                            </div>
+                            <small class="text-muted">
+                                <span class="badge badge-danger">{{-item.discount}} %</span>
+                            </small>
+                        </div>
+                    </ng-template>
+                    <!-- / end if -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+
+    <style>
+            .card-img-right {
+              height: 100%;
+              border-radius: 0 3px 3px 0;
+            }
+            
+            .flex-auto {
+              -ms-flex: 0 0 auto;
+              -webkit-box-flex: 0;
+              flex: 0 0 auto;
+            }
+            
+            </style>
+            
+            <div class="row mb-2">
+                <div class="col-md-6" *ngFor="let item of products">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <!-- <strong class="d-inline-block mb-2 text-primary">World</strong> -->
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">{{item.title}}</a>
+                            </h3>
+                            <div class="mb-1 text-muted">Nov 12</div>
+                            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                                additional content.</p>
+                            <a href="#">Continue reading</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-md-block" [src]="item.basicImgUrl" alt="Card image cap">
+                    </div>
+                </div>
+            </div>

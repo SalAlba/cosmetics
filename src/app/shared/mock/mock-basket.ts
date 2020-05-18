@@ -1,24 +1,17 @@
+import { PRODUCTS } from "./mock-product";
+import { BasketComponent } from 'src/app/modules/basket/components/basket/basket.component';
+
 export const BASKET = [
-    {
-        title: 'Profhilo',
-        basicImgUrl: 'https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711',
-        imgs: ['https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711'],
-        description: "",
-        unitPrice: 12,
-        quantity: 1,
-        discount: 0,
-        visible: true,
-        bestSeller: true,
-    },
-    {
-        title: 'Profhilo',
-        basicImgUrl: 'https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711',
-        imgs: ['https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711'],
-        description: "",
-        unitPrice: 5,
-        quantity: 2,
-        discount: 0,
-        visible: true,
-        bestSeller: true,
-    }
+    PRODUCTS[0],
+    PRODUCTS[1]
 ];
+
+function getBasket() {
+    let bask = {};
+    bask[PRODUCTS[0]._id] = PRODUCTS[0];
+    bask[PRODUCTS[1]._id] = PRODUCTS[1];
+
+    return bask;
+}
+
+export const BASKET_ = getBasket();

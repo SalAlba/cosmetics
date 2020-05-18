@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Product } from "../models/product.model";
 import { Payment } from "../models/payment.model";
-import { BASKET } from "../mock/mock-basket";
+import { BasketProduct } from "../models/basket.model";
+import { BASKET, BASKET_ } from "../mock/mock-basket";
 
 import { PaymentsService } from "./payments/payments.service";
 
@@ -13,17 +14,34 @@ import { browser, by, element } from 'protractor';
 })
 export class BasketService {
 
-  curentBasket: Product[] = BASKET;
+  currentBasket: Product[] = BASKET;
+  basket_ = BASKET_;
 
   constructor(private paymentsService: PaymentsService) { }
 
+  getBasket() {
+    return this.basket_;
+  }
+
+  getBasketById(_id: string) {
+    if (_id in this.basket_) {
+      return this.basket_[_id]
+    }
+    return { quantity: 0 };
+  }
+
   getTotalPrice() {
-    return this.curentBasket.reduce((a, b) => a + (b.unitPrice || 0), 0);
+    // return this.currentBasket.reduce((a, b) => a + (b.unitPrice || 0), 0);
+    return Object.values(this.basket_).reduce((a: any, b: any) => a + (b.unitPrice || 0), 0);
+  }
+
+  getNumberOfProducts() {
+    return Object.values(this.basket_).length;
   }
 
   pay() {
     console.log('====> Start Pay <=====');
-    let response = this.paymentsService.createNewOrder(this.getBaseketForPayment());
+    let response = this.paymentsService.createNewOrder(this.getBasketForPayment());
     response.subscribe(d => {
       console.log(d);
       this.navigateTo(d['redirectUri']);
@@ -31,11 +49,11 @@ export class BasketService {
     console.log('====> End Pay <=====');
   }
 
-  getBaseketForPayment(): Payment {
+  getBasketForPayment(): Payment {
     let payment = {
       notifyUrl: "http://salem.cktech.eu",
       description: "test js description",
-      products: this.curentBasket,
+      products: this.currentBasket,
     }
 
     // # TODO  .... 
@@ -44,6 +62,16 @@ export class BasketService {
       // delete payment.products[i].title;
     }
     return payment;
+  }
+
+  addProductToBasket(product: Product) {
+    console.log('===> Add to basket <===');
+    if (product._id in this.basket_) {
+      this.basket_[product._id].quantity += 1;
+    } else {
+      this.basket_[product._id] = product;
+    }
+    console.log(this.basket_)
   }
 
   navigateTo(baseUrl) {

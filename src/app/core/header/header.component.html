@@ -14,7 +14,11 @@
            </a>-->
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/basket'" > <i class="fa fa-shopping-basket"></i> Basket</a>
+          <a class="nav-link" [routerLink]="'/basket'" >
+            <i class="fa fa-shopping-basket"></i>
+            Basket
+            <span class="badge badge-secondary badge-pill">{{getNumberOfProducts()}}</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" [routerLink]="'/postes'" >Products</a>

@@ -16,7 +16,7 @@ export class BasketComponent implements OnInit {
   }
 
   getBasket(): Product[] {
-    return this.basketService.curentBasket;
+    return this.basketService.currentBasket;
   }
 
   getTotalPrice(){
@@ -24,7 +24,7 @@ export class BasketComponent implements OnInit {
   }
 
   getNumberOfProducts(){
-    return this.basketService.curentBasket.length;
+    return this.basketService.getNumberOfProducts();
   }
 
   pay(){
