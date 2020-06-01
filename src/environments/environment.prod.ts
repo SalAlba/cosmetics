@@ -1,4 +1,5 @@
 export const environment = {
-  api: 'http://salem.cktech.eu/api',
+  api: 'https://admin.smartcity.cktech.eu/api/v1',
+  notifyUrl: 'http://salem.cktech.eu',
   production: true
 };

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Product } from "../models/product.model";
+import { User } from "../models/user.model";
+import { Buyer } from "../models/buyer.model";
 import { Payment } from "../models/payment.model";
 import { BasketProduct } from "../models/basket.model";
 import { BASKET, BASKET_ } from "../mock/mock-basket";
@@ -8,20 +10,28 @@ import { BASKET, BASKET_ } from "../mock/mock-basket";
 import { PaymentsService } from "./payments/payments.service";
 
 import { browser, by, element } from 'protractor';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
 
+  private NOTIFY_URL = environment.notifyUrl;
   currentBasket: Product[] = BASKET;
   basket_ = BASKET_;
 
   constructor(private paymentsService: PaymentsService) { }
 
-  getBasket() {
-    return this.basket_;
+  getBasketProducts(): Product[] {
+    return Object.values(this.basket_.products);
   }
+
+  getBasketBuyer(): Buyer {
+    return this.basket_.buyer;
+  }
+
 
   getBasketById(_id: string) {
     if (_id in this.basket_) {
@@ -32,17 +42,16 @@ export class BasketService {
 
   getTotalPrice() {
     // return this.currentBasket.reduce((a, b) => a + (b.unitPrice || 0), 0);
-    return Object.values(this.basket_).reduce((a: any, b: any) => a + (b.unitPrice || 0), 0);
+    return Object.values(this.basket_.products).reduce((a: any, b: any) => a + (b.unitPrice * b.quantity || 0), 0);
   }
 
   getNumberOfProducts() {
-    return Object.values(this.basket_).length;
+    return Object.values(this.basket_.products).length;
   }
 
   pay() {
     console.log('====> Start Pay <=====');
-    let response = this.paymentsService.createNewOrder(this.getBasketForPayment());
-    response.subscribe(d => {
+    this.paymentsService.createNewOrder(this.getBasketForPayment()).subscribe(d => {
       console.log(d);
       this.navigateTo(d['redirectUri']);
     });
@@ -51,9 +60,10 @@ export class BasketService {
 
   getBasketForPayment(): Payment {
     let payment = {
-      notifyUrl: "http://salem.cktech.eu",
+      notifyUrl: this.NOTIFY_URL,
       description: "test js description",
-      products: this.currentBasket,
+      products: this.getBasketProducts(),
+      buyer: this.getBasketBuyer(),
     }
 
     // # TODO  .... 
@@ -66,15 +76,23 @@ export class BasketService {
 
   addProductToBasket(product: Product) {
     console.log('===> Add to basket <===');
-    if (product._id in this.basket_) {
-      this.basket_[product._id].quantity += 1;
+    if (product._id in this.basket_.products) {
+      this.basket_.products[product._id].quantity += 1;
     } else {
-      this.basket_[product._id] = product;
+      product.quantity = 1;
+      this.basket_.products[product._id] = product;
     }
-    console.log(this.basket_)
+    console.log(this.basket_.products);
   }
 
-  navigateTo(baseUrl) {
+  removeFromBasket(product: Product) {
+    console.log('===> remove from basket <===');
+    this.basket_.products[product._id].quantity = 0;
+    delete this.basket_.products[product._id];
+    console.log(this.basket_.products);
+  }
+
+  navigateTo(baseUrl: string) {
     window.location.href = baseUrl;
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 // modules ...
 import { CoreModule } from '../../core/core.module';
@@ -16,6 +17,7 @@ import { BasketComponent } from './components/basket/basket.component';
   declarations: [BasketComponent],
   imports: [
     CommonModule,
+    FormsModule,
     CoreModule,
     SharedModule,
     BasketRoutingModule

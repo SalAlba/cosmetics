@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  api: 'http://salem.cktech.eu/api',
+  api: 'https://admin.smartcity.cktech.eu/api/v1',
+  notifyUrl: 'http://salem.cktech.eu',
   production: false
 };
 

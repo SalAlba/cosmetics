@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {RouterModule} from '@angular/router';
 import {AngularMarkdownEditorModule} from 'angular-markdown-editor';
+// import { FormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 // modules ...
 import { SharedRoutingModule } from "./shared-routing.module";
@@ -18,6 +20,8 @@ import { PrivacyPolicyComponent } from "./components/privacy-policy/privacy-poli
   declarations: [PrivacyPolicyComponent, SliderComponent, BestsellerComponent, QItemsComponent],
   imports: [
     CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     FontAwesomeModule,
     RouterModule,
     AngularMarkdownEditorModule.forRoot({ iconlibrary: 'fa' }),
