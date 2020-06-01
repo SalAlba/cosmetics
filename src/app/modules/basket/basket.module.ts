@@ -9,12 +9,13 @@ import { BasketRoutingModule } from './basket-routing.module';
 
 // components ...
 import { BasketComponent } from './components/basket/basket.component';
+import { SuccessfullyEndTransactionComponent } from './components/successfully-end-transaction/successfully-end-transaction.component';
 
 
 
 
 @NgModule({
-  declarations: [BasketComponent],
+  declarations: [BasketComponent, SuccessfullyEndTransactionComponent],
   imports: [
     CommonModule,
     FormsModule,

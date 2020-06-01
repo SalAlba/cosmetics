@@ -59,8 +59,10 @@ export class BasketService {
   }
 
   getBasketForPayment(): Payment {
+    let d = `salem-ID-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
     let payment = {
-      notifyUrl: this.NOTIFY_URL,
+      notifyUrl: `${this.NOTIFY_URL}`,
+      continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${d}`,
       description: "test js description",
       products: this.getBasketProducts(),
       buyer: this.getBasketBuyer(),
