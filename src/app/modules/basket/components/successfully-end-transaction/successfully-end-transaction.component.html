@@ -1,11 +1,20 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-
-            <h1>successfully-end-transaction</h1>
-            <p>
-                ID : {{_id}}
+<div class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">Thank you for your order!</h1>
+            <p class="lead">
+                Your order number : <span class="btn-outline-success">{{_id}}</span>
             </p>
-        </div>
+            <p class="lead">
+                It will be delivered as soon as possible
+            </p>
+            <p class="lead">
+                Email us at with <span class="btn-outline-success">{{email}}</span> any questions suggestions or your
+                favourite love story.
+            </p>
+            <p class="lead">
+                <a [routerLink]="'/faq'" class="btn btn-lg btn-dark">more help</a>
+            </p>
+        </main>
     </div>
 </div>

@@ -23,6 +23,8 @@ export class BasketComponent implements OnInit {
   products: Product[];
   buyer: Buyer;
   productCart: FormGroup;
+  countries = [];
+  states = [];
 
   constructor(
     private basketService: BasketService,
@@ -32,6 +34,11 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.getBasketProducts();
     this.buyer = this.getBasketBuyer();
+    this.countries = this.basketService.get_list_of_countries();
+    // this.buyer['_selectedCountry'] = {
+    //   name: '',
+    //   state: []
+    // }
     // this.createForm();
   }
 
@@ -73,5 +80,9 @@ export class BasketComponent implements OnInit {
 
   getUrl(product: Product) {
     return this.linksService.getProductDetailUrl(product);
+  }
+
+  onSelectCountry() {
+    this.states = this.countries.find(d => d.name == this.buyer.country).states;
   }
 }

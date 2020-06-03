@@ -1,4 +1,5 @@
 <div class="container mt-2">
+    <!-- row -->
     <div class="row">
         <div class="col-md-6">
             <img [src]="product_.basicImgUrl" alt="" class="img-thumbnail">
@@ -69,26 +70,27 @@
             <h4 class="mb-3">{{product_.unitPrice}} $</h4>
             <!-- mini details -->
             <p>
-                Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                The first of its kind, Profhilo® is a revolutionary 'beneath the skin' hyaluronic acid moisturising
+                treatment, made with the patented NAHYCO® technology. This results in a unique hyaluronic acid
+                injectable gel, which has a prolonged stimulating activity on the dermal cells. When injected into skin,
+                Profhilo stimulates the skin cell receptors to counteract skin laxity and improve and restore firmness
+                of the skin.
             </p>
             <!-- table -->
             <table class="table col-md-6">
                 <tbody>
                     <tr>
                         <th scope="row">Manufacturer</th>
-                        <td>Mark</td>
+                        <td>IBSA</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th scope="row">Article number</th>
                         <td>596 065</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <th scope="row">Guarantee</th>
                         <td>2 year</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th scope="row">Delivery time</th>
                         <td>3-4 days</td>
@@ -101,8 +103,8 @@
             </table>
             <!-- To basket -->
             <!-- <form [formGroup]="productCart" (ngSubmit)="addToBasket()"> -->
-                <div class="form-row align-items-center">
-                    <!-- <div class="col-auto">
+            <div class="form-row align-items-center">
+                <!-- <div class="col-auto">
                         <label class="sr-only" for="inlineFormInputGroup">Username</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -114,10 +116,11 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-dark mb-2" (click)="addToBasket()"><i class="fa fa-shopping-basket"></i> Add to cart</button>
-                    </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-dark mb-2" (click)="addToBasket()"><i
+                            class="fa fa-shopping-basket"></i> Add to cart</button>
                 </div>
+            </div>
             <!-- </form> -->
 
         </div>
@@ -126,26 +129,23 @@
 
 <div class="container-fluied bg-light">
     <div class="container py-3">
-        <!--  -->
+        <!-- row -->
         <div class="row">
             <div class="col-md-8">
                 <h4>Description</h4>
                 <div>
                     <p>
-                        Lava stone grill, suitable for natural gas, with cast-iron cooking grid, piezo ignition,
-                        stainless
-                        steel burners, water tank, and thermocouple. Thermostatic adjustable per zone. Comes complete
-                        with
-                        lava rocks. Adjustable legs. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        One of the highest concentrations of hyaluronic acid on the market, Profhilo not only boosts and
+                        hydrates the skin, but also remodels ageing and sagging tissue. The most common areas of
+                        treatment include the face and neck and can also be used for the décolletage, hands, arms, knees
+                        and abdomen area where it would effectively treat skin laxity. The treatment is suitable for men
+                        and women as well as offering skin benefits for patients of all ages.
                     </p>
                     <ul>
-                        <li>Material: Stainless steel</li>
-                        <li>Weight: 82kg</li>
-                        <li>built-in drip tray</li>
-                        <li>Open base for pots and pans</li>
+                        <li>Materials: Cartons/Plastic</li>
+                        <li>Weight: 100g</li>
+                        <!-- <li>built-in drip tray</li> -->
+                        <!-- <li>Open base for pots and pans</li> -->
                         <li>On request available in propane execution</li>
                     </ul>
                 </div>
@@ -156,8 +156,20 @@
                             <th scope="row" colspan="2">Basic specs</th>
                         </tr>
                         <tr>
-                            <td>Type of energy</td>
-                            <td>Lava stone</td>
+                            <td>Ingredients</td>
+                            <td>
+                                3.2% - 32 mg (H-HA) + 32 mg (L-HA)/2 ml Hyaluronic acid sodium salt. 2 ml pre-filled
+                                syringe + 2 needles.
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Extra info</td>
+                            <td>
+                                To be sold by medical prescription only.
+                                The intradermical injection may only be administered by a medical practitioner.
+
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="2">Dimensions</th>
@@ -179,16 +191,9 @@
             </div>
             <div class="col-md-4">
                 <h4>Files</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
+                <ul>
+                    <li><a target="_blank" href="http://greggyqc.nazwa.pl/docs/europeanemp/images/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf">Profhilo</a></li>
+                </ul>
                 <h4>Videos</h4>
                 <ul>
                     <li>1</li>
@@ -197,6 +202,26 @@
                 </ul>
             </div>
         </div>
+        <!-- assets/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100 -->
+        <!-- http://greggyqc.nazwa.pl/docs/europeanemp/images/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100 -->
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <iframe src="assets/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100" width="100%" height="680px"
+                    frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+                    style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;"
+                    allowfullscreen>
+                    This browser does not support PDFs. Please download the PDF to view it: Download PDF
+                </iframe>
+            </div>
+            <div class="col-md-12">
+                <!-- <iframe width="100%" height="500px"
+                    src="http://www.africau.edu/images/default/sample.pdf#toolbar=0&view=fitH,100">
+                    This browser does not support PDFs. Please download the PDF to view it: Download PDF
+                </iframe> -->
 
+                <!-- <embed src="http://www.africau.edu/images/default/sample.pdf#toolbar=0&view=fitH,100" type="application/pdf" width="100%" height="550px"> -->
+            </div>
+        </div>
     </div>
 </div>

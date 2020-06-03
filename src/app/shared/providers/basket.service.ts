@@ -12,6 +12,7 @@ import { PaymentsService } from "./payments/payments.service";
 import { browser, by, element } from 'protractor';
 import { environment } from '../../../environments/environment';
 
+import { COUNTRIES } from "../../shared/mock/mock-country";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,7 @@ export class BasketService {
       notifyUrl: `${this.NOTIFY_URL}`,
       continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${d}`,
       description: "test js description",
+      // currencyCode: "USD",
       products: this.getBasketProducts(),
       buyer: this.getBasketBuyer(),
     }
@@ -96,5 +98,9 @@ export class BasketService {
 
   navigateTo(baseUrl: string) {
     window.location.href = baseUrl;
+  }
+
+  get_list_of_countries(){
+    return COUNTRIES;
   }
 }

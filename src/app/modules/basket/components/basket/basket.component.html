@@ -6,6 +6,9 @@
         <h2>Checkout form</h2>
         <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group
             has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            <pre>
+                {{buyer | json}}
+            </pre>
     </div> -->
 
     <!--  -->
@@ -60,9 +63,10 @@
             <div class="row">
                 <div class="col-md-5 mb-3">
                     <label for="country">Country</label>
-                    <select class="custom-select d-block w-100" id="country" required>
-                        <option value="">Choose...</option>
-                        <option>United States</option>
+                    <select class="custom-select d-block w-100" id="country" required [(ngModel)]="buyer.country"
+                        (ngModelChange)="onSelectCountry()">
+                        <option [ngValue]="null">Choose...</option>
+                        <option *ngFor="let country of countries" [ngValue]="country.name">{{country.name}}</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a valid country.
@@ -70,9 +74,9 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="state">State</label>
-                    <select class="custom-select d-block w-100" id="state" required>
-                        <option value="">Choose...</option>
-                        <option>California</option>
+                    <select class="custom-select d-block w-100" id="state" [(ngModel)]="buyer.state" required>
+                        <option [ngValue]="null">Choose...</option>
+                        <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
                     </select>
                     <div class="invalid-feedback">
                         Please provide a valid state.
@@ -89,7 +93,7 @@
 
             <div class="mb-3">
                 <label for="address2">Description</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="buyer.description"></textarea>
+                <textarea class="form-control" rows="3" [(ngModel)]="buyer.description" placeholder="phone, extra info, etc."></textarea>
             </div>
             <!-- <hr class="mb-4"> -->
             <!-- <div class="custom-control custom-checkbox">

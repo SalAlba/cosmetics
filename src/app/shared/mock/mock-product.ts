@@ -1,12 +1,12 @@
 export const PRODUCTS = [
     {
         _id: 'xxxx',
-        title: 'Profhilo X',
+        title: 'Profhilo',
         basicImgUrl: 'https://5.imimg.com/data5/AH/XC/LB/SELLER-75007561/profhilo-h-plus-l-500x500.png',
         imgs: ['https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711'],
         description: "",
         link: "profhilo-x",
-        unitPrice: 12.5,
+        unitPrice: 125,
         discount: 0,
         quantity: 0,
         visible: true,

@@ -7,7 +7,7 @@
         <div class="carousel-item" *ngFor="let item of slides let i=index" [ngClass]="item.status">
             <h1>{{item.img}}</h1>
             <img class="first-slide w-100" [src]="item.img" alt="First slide">
-            <div class="container" *ngIf="item.hasDescription" [innerHTML]="item.description"></div>
+            <!-- <div class="container" *ngIf="item.hasDescription" [innerHTML]="item.description"></div> -->
         </div>
     </div>
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
