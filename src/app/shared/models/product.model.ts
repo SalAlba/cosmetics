@@ -1,21 +1,34 @@
 export class Product {
-    // tslint:disable-next-line:variable-name
+    // basic
     _id?: string;
     title: string;
-    // postType?: string;
-    // description?: string;
-    // markdownUrl?: string;
     link?: string;
+    manufacturer?: string;
+    deliveryTime?: string;
+    availability?: boolean;
+
+    // img
     basicImgUrl?: string;
     imgs?: string[];
-    tags?: string[];
-    visible: boolean;
-    created?: string;
-    updated?: string;
 
 
     // Brief description
-    unitPrice?: number;
-    quantity?: number;
+    shortDescription?: string;
+    fullDescription?: string;
+    tags?: string[];
+
+    // prices
     discount?: number;
+    quantity?: number;
+    unitPrice?: number;
+    // unitPricePLN?: number;
+    // unitPriceUSD?: number;
+    // unitPriceEURO?: number;
+    // unitPriceOMR?: number;
+    // unitPriceQAR?: number;
+
+    // others
+    visible: boolean;
+    created?: string;
+    updated?: string;
 }
