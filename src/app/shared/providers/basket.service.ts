@@ -8,6 +8,7 @@ import { BasketProduct } from "../models/basket.model";
 import { BASKET, BASKET_ } from "../mock/mock-basket";
 
 import { PaymentsService } from "./payments/payments.service";
+import { EmailService } from "./email/email.service";
 
 import { browser, by, element } from 'protractor';
 import { environment } from '../../../environments/environment';
@@ -23,7 +24,7 @@ export class BasketService {
   currentBasket: Product[] = BASKET;
   basket_ = BASKET_;
 
-  constructor(private paymentsService: PaymentsService) { }
+  constructor(private paymentsService: PaymentsService, private emailService:EmailService) { }
 
   getBasketProducts(): Product[] {
     return Object.values(this.basket_.products);
@@ -51,19 +52,25 @@ export class BasketService {
   }
 
   pay() {
+    let basketProduct = this.getBasketForPayment();
+    console.log('====> Start Email <=====');
+    this.emailService.sendOrderEmail(basketProduct);
+    console.log('====> End Email <=====');
     console.log('====> Start Pay <=====');
-    this.paymentsService.createNewOrder(this.getBasketForPayment()).subscribe(d => {
-      console.log(d);
-      this.navigateTo(d['redirectUri']);
-    });
+    // this.paymentsService.createNewOrder(basketProduct).subscribe(d => {
+    //   console.log(d);
+    //   this.navigateTo(d['redirectUri']);
+    // });
     console.log('====> End Pay <=====');
   }
 
   getBasketForPayment(): Payment {
-    let d = `salem-ID-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+    let d = `salem-ID-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
     let payment = {
+      id:d,
       notifyUrl: `${this.NOTIFY_URL}`,
       continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${d}`,
+      mapper:'payu',
       description: "test js description",
       // currencyCode: "USD",
       products: this.getBasketProducts(),
