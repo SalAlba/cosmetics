@@ -24,7 +24,7 @@ export class BasketService {
   currentBasket: Product[] = BASKET;
   basket_ = BASKET_;
 
-  constructor(private paymentsService: PaymentsService, private emailService:EmailService) { }
+  constructor(private paymentsService: PaymentsService, private emailService: EmailService) { }
 
   getBasketProducts(): Product[] {
     return Object.values(this.basket_.products);
@@ -57,20 +57,20 @@ export class BasketService {
     this.emailService.sendOrderEmail(basketProduct);
     console.log('====> End Email <=====');
     console.log('====> Start Pay <=====');
-    // this.paymentsService.createNewOrder(basketProduct).subscribe(d => {
-    //   console.log(d);
-    //   this.navigateTo(d['redirectUri']);
-    // });
+    this.paymentsService.createNewOrder(basketProduct).subscribe(d => {
+      console.log(d);
+      this.navigateTo(d['redirectUri']);
+    });
     console.log('====> End Pay <=====');
   }
 
   getBasketForPayment(): Payment {
     let d = `salem-ID-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
     let payment = {
-      id:d,
+      id: d,
       notifyUrl: `${this.NOTIFY_URL}`,
       continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${d}`,
-      mapper:'payu',
+      mapper: 'payu',
       description: "test js description",
       // currencyCode: "USD",
       products: this.getBasketProducts(),
@@ -107,7 +107,7 @@ export class BasketService {
     window.location.href = baseUrl;
   }
 
-  get_list_of_countries(){
+  get_list_of_countries() {
     return COUNTRIES;
   }
 }
