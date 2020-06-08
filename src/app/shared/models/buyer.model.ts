@@ -4,6 +4,7 @@ export class Buyer {
     firstName?: string;
     lastName?: string;
     email?: string;
+    phone?: string;
     firstAddress?: string;
     secondAddress?: string;
     country?: string;
