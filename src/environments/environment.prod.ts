@@ -5,5 +5,6 @@ export const environment = {
   production: true,
   notificationEmails: [
     'saljan93@live.com',
+    'nabhan1008@gmail.com',
   ]
 };
