@@ -35,9 +35,11 @@ export class ProductsService {
 
   /*** HTTP METHODS */
   public getAllBestSellerProducts(): Observable<Product[]> {
-    this._products.next(PRODUCTS)
-    return this._products;
+    // this._products.next(PRODUCTS)
+    // return this._products;
     // return this.http.get<Product[]>(`${this.BASIC_URL}/products/bestseller`);
+    this.http.get<Product[]>(`${this.BASIC_URL}/products/`).subscribe(d => this._products.next(d['products']));
+    return this._products;
   }
 
   public getAllProducts(): Observable<Product[]> {

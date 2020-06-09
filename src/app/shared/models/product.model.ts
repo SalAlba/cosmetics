@@ -29,6 +29,7 @@ export class Product {
 
     // others
     visible: boolean;
+    bestSeller:boolean;
     created?: string;
     updated?: string;
 }

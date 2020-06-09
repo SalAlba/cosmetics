@@ -15,6 +15,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -36,7 +37,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private basketService: BasketService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -83,6 +85,11 @@ export class ProductComponent implements OnInit {
     //     d.quantity -= 1;
     //   }
     // });
+  }
+
+
+  sanitizeHTML(data:string){
+    return this.sanitizer.bypassSecurityTrustHtml(data);
   }
 
 

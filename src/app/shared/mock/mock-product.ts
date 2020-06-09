@@ -1,14 +1,141 @@
-export const PRODUCTS = [
+import { Product } from "../models/product.model";
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+export const PRODUCTS: Array<Product> = [
     {
+
+        // basic
         _id: 'xxxx',
         title: 'Profhilo',
+        link: "profhilo",
+        manufacturer: "IBSA",
+        deliveryTime: "3-4 days",
+        availability: true,
+        quantity:0,
+
+
+        // img
         basicImgUrl: 'https://5.imimg.com/data5/AH/XC/LB/SELLER-75007561/profhilo-h-plus-l-500x500.png',
         imgs: ['https://cdn.shopify.com/s/files/1/0374/7286/2341/products/PROFHILO-PACK-HR_1024x1024@2x.jpg?v=1587373711'],
-        description: "",
-        link: "profhilo",
+
+        // Brief description
+        shortDescription: `
+            <p>
+                The first of its kind, Profhilo® is a revolutionary 'beneath the skin' hyaluronic acid moisturising
+                treatment, made with the patented NAHYCO® technology. This results in a unique hyaluronic acid
+                injectable gel, which has a prolonged stimulating activity on the dermal cells. When injected into
+                skin,
+                Profhilo stimulates the skin cell receptors to counteract skin laxity and improve and restore
+                firmness
+                of the skin.
+            </p>
+        `,
+        fullDescription: `
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h4>Description</h4>
+                    <div>
+                        <p>
+                            One of the highest concentrations of hyaluronic acid on the market, Profhilo not only boosts and
+                            hydrates the skin, but also remodels ageing and sagging tissue. The most common areas of
+                            treatment include the face and neck and can also be used for the décolletage, hands, arms, knees
+                            and abdomen area where it would effectively treat skin laxity. The treatment is suitable for men
+                            and women as well as offering skin benefits for patients of all ages.
+                        </p>
+                        <ul>
+                            <li>Materials: Cartons/Plastic</li>
+                            <li>Weight: 100g</li>
+                            <!-- <li>built-in drip tray</li> -->
+                            <!-- <li>Open base for pots and pans</li> -->
+                            <li>On request available in propane execution</li>
+                        </ul>
+                    </div>
+                    <h4>Specifications</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row" colspan="2">Basic specs</th>
+                            </tr>
+                            <tr>
+                                <td>Ingredients</td>
+                                <td>
+                                    3.2% - 32 mg (H-HA) + 32 mg (L-HA)/2 ml Hyaluronic acid sodium salt. 2 ml pre-filled
+                                    syringe + 2 needles.
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Extra info</td>
+                                <td>
+                                    To be sold by medical prescription only.
+                                    The intradermical injection may only be administered by a medical practitioner.
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" colspan="2">Dimensions</th>
+                            </tr>
+                            <tr>
+                                <td>Width</td>
+                                <td>500mm</td>
+                            </tr>
+                            <tr>
+                                <td>Depth</td>
+                                <td>400mm</td>
+                            </tr>
+                            <tr>
+                                <td>Height</td>
+                                <td>700mm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <h4>Files</h4>
+                    <ul>
+                        <li><a target="_blank"
+                                href="http://greggyqc.nazwa.pl/docs/europeanemp/images/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf">Profhilo</a>
+                        </li>
+                    </ul>
+                    <h4>Videos</h4>
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- assets/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100 -->
+            <!-- http://greggyqc.nazwa.pl/docs/europeanemp/images/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100 -->
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <iframe src="assets/PROFHILO_PACK_MULTILINGUA_12876_EDIII_01-17_VISIONE_300117.pdf#view=fitH,100"
+                        width="100%" height="680px" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+                        style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;"
+                        allowfullscreen>
+                        This browser does not support PDFs. Please download the PDF to view it: Download PDF
+                    </iframe>
+                </div>
+                <div class="col-md-12">
+                    <!-- <iframe width="100%" height="500px"
+                        src="http://www.africau.edu/images/default/sample.pdf#toolbar=0&view=fitH,100">
+                        This browser does not support PDFs. Please download the PDF to view it: Download PDF
+                    </iframe> -->
+
+                    <!-- <embed src="http://www.africau.edu/images/default/sample.pdf#toolbar=0&view=fitH,100" type="application/pdf" width="100%" height="550px"> -->
+                </div>
+            </div>
+        `,
+
+        // prices
         unitPrice: 125,
         discount: 0,
-        quantity: 0,
+        // quantity: 0,
+
+        // others
         visible: true,
         bestSeller: true,
     },
