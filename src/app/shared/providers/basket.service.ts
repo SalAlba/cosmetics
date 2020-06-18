@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 
 import { Product } from "../models/product.model";
-import { User } from "../models/user.model";
+// import { User } from "../models/user.model";
 import { Buyer } from "../models/buyer.model";
 import { Payment } from "../models/payment.model";
-import { BasketProduct } from "../models/basket.model";
+// import { BasketProduct } from "../models/basket.model";
 import { BASKET, BASKET_ } from "../mock/mock-basket";
 
 import { PaymentsService } from "./payments/payments.service";
 import { EmailService } from "./email/email.service";
 
-import { browser, by, element } from 'protractor';
+// import { browser, by, element } from 'protractor';
 import { environment } from '../../../environments/environment';
 
 import { COUNTRIES } from "../../shared/mock/mock-country";
@@ -42,13 +42,31 @@ export class BasketService {
     return { quantity: 0 };
   }
 
-  getTotalPrice() {
+  getShippingCost(): number {
+    if (Object.keys(this.basket_.products).length == 0 && this.basket_.products.constructor === Object) {
+      return 0.;
+    }
+    let pcs = (Number)(Object.values(this.basket_.products).reduce((a: any, b: any) => a + (1 * b.quantity || 0), 0));
+    let basciPCS = 20.;
+    let basciPCSCost = 25.;
+    if (pcs <= 20.) {
+      return 25.;
+    }
+
+    pcs = Math.ceil((pcs - basciPCS) / 10.);
+    return basciPCSCost + basciPCSCost * pcs;
+  }
+
+  getTotalPrice(): number {
     // return this.currentBasket.reduce((a, b) => a + (b.unitPrice || 0), 0);
-    return Object.values(this.basket_.products).reduce((a: any, b: any) => a + (b.unitPrice * b.quantity || 0), 0);
+    if (Object.keys(this.basket_.products).length == 0 && this.basket_.products.constructor === Object) {
+      return 0. + this.getShippingCost();
+    }
+    return (Number)(Object.values(this.basket_.products).reduce((a: any, b: any) => a + (b.unitPrice * b.quantity || 0), 0)) + this.getShippingCost();
   }
 
   getNumberOfProducts() {
-    return Object.values(this.basket_.products).length;
+    return Object.keys(this.basket_.products).length;
   }
 
   pay() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from "../../../../shared/models/product.model";
-import { User } from "../../../../shared/models/user.model";
+// import { User } from "../../../../shared/models/user.model";
 import { Buyer } from "../../../../shared/models/buyer.model";
 import { BasketService } from "../../../../shared/providers/basket.service";
 import { LinksService } from "../../../../shared/providers/links/links.service";
@@ -62,7 +62,11 @@ export class BasketComponent implements OnInit {
     return this.basketService.getBasketBuyer();
   }
 
-  getTotalPrice() {
+  getShippingCost():number {
+    return this.basketService.getShippingCost();
+  }
+
+  getTotalPrice():number {
     return this.basketService.getTotalPrice();
   }
 

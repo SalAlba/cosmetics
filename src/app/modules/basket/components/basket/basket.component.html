@@ -72,7 +72,8 @@
             <div class="row">
                 <div class="col-md-5 mb-3">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="" [(ngModel)]="buyer.country" required>
+                    <input type="text" class="form-control" id="country" placeholder="" [(ngModel)]="buyer.country"
+                        required>
                     <!-- <select class="custom-select d-block w-100" id="country" required [(ngModel)]="buyer.country"
                         (ngModelChange)="onSelectCountry()">
                         <option [ngValue]="null">Choose...</option>
@@ -84,7 +85,8 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="state">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="" [(ngModel)]="buyer.state" required>
+                    <input type="text" class="form-control" id="state" placeholder="" [(ngModel)]="buyer.state"
+                        required>
                     <!-- <select class="custom-select d-block w-100" id="state" [(ngModel)]="buyer.state" required>
                         <option [ngValue]="null">Choose...</option>
                         <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
@@ -104,7 +106,8 @@
 
             <div class="mb-3">
                 <label for="address2">Description</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="buyer.description" placeholder="phone, extra info, etc."></textarea>
+                <textarea class="form-control" rows="3" [(ngModel)]="buyer.description"
+                    placeholder="phone, extra info, etc."></textarea>
             </div>
             <!-- <hr class="mb-4"> -->
             <!-- <div class="custom-control custom-checkbox">
@@ -180,60 +183,88 @@
 
         <!-- Cart -->
         <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
-                <span class="badge badge-secondary badge-pill">{{getNumberOfProducts()}}</span>
-            </h4>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-condensed"
-                    *ngFor="let product of getBasketProducts(); let idx = index">
-                    <div class="col-md-4">
-                        <h6 class="my-0">
-                            <a [routerLink]="getUrl(product)" class="text-dark">{{product.title}}</a>
-                        </h6>
-                    </div>
-                    <!-- <span class="text-muted">${{product.unitPrice}}</span> -->
+            <!--  -->
+            <div>
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">{{getNumberOfProducts()}}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed"
+                        *ngFor="let product of getBasketProducts(); let idx = index">
+                        <div class="col-md-4">
+                            <h6 class="my-0">
+                                <a [routerLink]="getUrl(product)" class="text-dark">{{product.title}}</a>
+                            </h6>
+                        </div>
+                        <!-- <span class="text-muted">${{product.unitPrice}}</span> -->
 
-                    <div class="form-row align-items-center col-md-8">
-                        <div class="col-auto">
-                            <div class="input-group mb-2">
-                                <input type="number" class="form-control" [(ngModel)]="product.quantity">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text" disabled="disabled">
-                                        ${{product.unitPrice * product.quantity}}
+                        <div class="form-row align-items-center col-md-8">
+                            <div class="col-auto">
+                                <div class="input-group mb-2">
+                                    <input type="number" class="form-control" [(ngModel)]="product.quantity">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" disabled="disabled">
+                                            ${{product.unitPrice * product.quantity}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-danger btn-sm" (click)="removeFromBasket(product)">
+                                    <i class="fa fa-trash"></i> remove</button>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-danger btn-sm" (click)="removeFromBasket(product)">
-                                <i class="fa fa-trash"></i> remove</button>
+                    </li>
+
+                    <!-- Promo code -->
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Shipping cost</h6>
+                        </div>
+                        <span class="text-success">+${{getShippingCost()}}</span>
+                    </li>
+                    <!-- <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Promo code</h6>
+                            <small>EXAMPLECODE</small>
+                        </div>
+                        <span class="text-success">-$5</span>
+                    </li> -->
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (USD)</span>
+                        <strong>${{getTotalPrice()}}</strong>
+                    </li>
+                </ul>
+
+                <form class="card p-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Promo code">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary" disabled="disabled">Apply</button>
                         </div>
                     </div>
-                </li>
+                </form>
+            </div>
 
-                <!-- Promo code -->
-                <!-- <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Promo code</h6>
-                        <small>EXAMPLECODE</small>
-                    </div>
-                    <span class="text-success">-$5</span>
-                </li> -->
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (USD)</span>
-                    <strong>${{getTotalPrice()}}</strong>
-                </li>
-            </ul>
-
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Promo code">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary" disabled="disabled">Apply</button>
-                    </div>
-                </div>
-            </form>
+            <!--  -->
+            <hr>
+            <div>
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Shipping cost</span>
+                    <!-- <span class="badge badge-secondary badge-pill">{{getNumberOfProducts()}}</span> -->
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>1 .. 20 (pcs.)</span>
+                        <strong>$25</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>every extra ten pieces</span>
+                        <strong>+$25</strong>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- End Cart -->
 
