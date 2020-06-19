@@ -2,14 +2,24 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <main role="main" class="inner cover">
             <h1 class="cover-heading">Thank you for your order!</h1>
-            <p class="lead">
-                Your order number : <span class="btn-outline-success">{{_id}}</span>
-            </p>
+            <table class="table lead text-left">
+                <tbody>
+                    <tr>
+                        <th scope="row">Your order number :</th>
+                        <td><span class="btn-outline-success">{{_id}}</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Price :</th>
+                        <td><span class="btn-outline-success">{{totalPrice}} $</span></td>
+                    </tr>
+                </tbody>
+            </table>
             <p class="lead">
                 It will be delivered as soon as possible
             </p>
             <p class="lead">
-                Email us at with <span class="btn-outline-success">{{email}}</span> any questions suggestions or your
+                Email us at with <span class="btn-outline-success">{{email}}</span> any questions suggestions or
+                your
                 favourite love story.
             </p>
             <p class="lead">

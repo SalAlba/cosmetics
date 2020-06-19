@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Product } from "../models/product.model";
 // import { User } from "../models/user.model";
@@ -24,7 +25,11 @@ export class BasketService {
   currentBasket: Product[] = BASKET;
   basket_ = BASKET_;
 
-  constructor(private paymentsService: PaymentsService, private emailService: EmailService) { }
+  constructor(
+    private paymentsService: PaymentsService,
+    private emailService: EmailService,
+    private router: Router
+  ) { }
 
   getBasketProducts(): Product[] {
     return Object.values(this.basket_.products);
@@ -75,15 +80,23 @@ export class BasketService {
     this.emailService.sendOrderEmail(basketProduct);
     console.log('====> End Email <=====');
     console.log('====> Start Pay <=====');
-    this.paymentsService.createNewOrder(basketProduct).subscribe(d => {
-      console.log(d);
-      this.navigateTo(d['redirectUri']);
-    });
+    this.paymentsService.createNewOrder(basketProduct).subscribe(
+      d => {
+        console.log(d);
+        // orderId
+        // this.navigateTo(d['redirectUri']);
+        // this.navigateTo(`successfully-end-transaction/${d['orderId']}`);
+        this.router.navigate([`/successfully-end-transaction/${d['orderId']}`], { queryParams: { totalPrice: this.getTotalPrice() } });
+      },
+      e => {
+        console.log('Error payments > ', e);
+      }
+    );
     console.log('====> End Pay <=====');
   }
 
   getBasketForPayment(): Payment {
-    let d = `salem-ID-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+    let d = `Profhilo-${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
     let payment = {
       id: d,
       notifyUrl: `${this.NOTIFY_URL}`,

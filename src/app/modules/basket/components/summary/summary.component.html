@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <!--  -->
+        <div class="col-md-6 mt-5">
+            <h4># Client informations</h4>
+            <table class="table">
+                <!-- <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col" class="text-center">Price</th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                    <tr>
+                        <th scope="row">Full name</th>
+                        <td>{{buyer.firstName}} {{buyer.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{{buyer.email}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Phone</th>
+                        <td>{{buyer.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address</th>
+                        <td>{{buyer.firstAddress}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Second Address (optional)</th>
+                        <td>{{buyer.secondAddress}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Post code</th>
+                        <td>{{buyer.zip}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>{{buyer.country}} {{buyer.state}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>
+                            <p>{{buyer.description}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  -->
+        <div class="col-md-12 mt-5">
+            <h4># Products information</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col" class="text-center">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- <li class="list-group-item d-flex justify-content-between lh-condensed"
+                        *ngFor="let product of getBasketProducts(); let idx = index"> -->
+
+                    <tr *ngFor="let product of getBasketProducts(); let idx = index">
+                        <th scope="row">{{idx + 1}}</th>
+                        <td><a [routerLink]="getUrl(product)" class="text-dark">{{product.title}}</a></td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.unitPrice}} $</td>
+                        <td class="text-center">{{product.quantity * product.unitPrice}} $</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="4" class="text-right">Shipping Cost</th>
+                        <td class="text-center">+{{getShippingCost()}}$</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="4" class="text-right">Total Price</th>
+                        <td class="text-center">{{getTotalPrice()}}$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  -->
+        <div class="col-md-12 mb-3">
+
+            <button class="btn btn-success btn-lg btn-block" type="submitXX" (click)="pay()">
+                Pay
+            </button>
+        </div>
+    </div>
+</div>

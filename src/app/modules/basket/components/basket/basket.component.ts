@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from "../../../../shared/models/product.model";
-// import { User } from "../../../../shared/models/user.model";
 import { Buyer } from "../../../../shared/models/buyer.model";
 import { BasketService } from "../../../../shared/providers/basket.service";
 import { LinksService } from "../../../../shared/providers/links/links.service";
@@ -13,6 +12,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
@@ -28,7 +28,8 @@ export class BasketComponent implements OnInit {
 
   constructor(
     private basketService: BasketService,
-    private linksService: LinksService
+    private linksService: LinksService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -79,7 +80,8 @@ export class BasketComponent implements OnInit {
   }
 
   pay() {
-    this.basketService.pay();
+    this.router.navigate(['/basket-summary']);
+    // this.basketService.pay();
   }
 
   getUrl(product: Product) {
