@@ -3,6 +3,8 @@ import { Product } from "../../../../shared/models/product.model";
 import { Buyer } from "../../../../shared/models/buyer.model";
 import { BasketService } from "../../../../shared/providers/basket.service";
 import { LinksService } from "../../../../shared/providers/links/links.service";
+import { environment } from "../../../../../environments/environment";
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-summary',
@@ -12,6 +14,8 @@ import { LinksService } from "../../../../shared/providers/links/links.service";
 export class SummaryComponent implements OnInit {
   products: Product[];
   buyer: Buyer;
+  transactionId: string;
+  accountNumber = environment.accountNumber;
 
   constructor(
     private basketService: BasketService,
@@ -21,6 +25,8 @@ export class SummaryComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.getBasketProducts();
     this.buyer = this.getBasketBuyer();
+    // this.transactionId = `Profhilo-${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+    this.transactionId = uuidv4().split('-')[0];
   }
 
   getBasketProducts(): Product[] {
@@ -44,6 +50,6 @@ export class SummaryComponent implements OnInit {
   }
 
   pay() {
-    this.basketService.pay();
+    this.basketService.pay(this.transactionId);
   }
 }

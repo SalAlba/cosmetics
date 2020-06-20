@@ -2,7 +2,7 @@
     <div class="row">
         <!--  -->
         <div class="col-md-6 mt-5">
-            <h4># Client informations</h4>
+            <h4># Client information</h4>
             <table class="table">
                 <!-- <thead class="thead-dark">
                     <tr>
@@ -47,6 +47,29 @@
                         <td>
                             <p>{{buyer.description}}</p>
                         </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 mt-5">
+            <h4># Payments information</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Recipient's name</th>
+                        <td>Paradise cosmetics</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Account number</th>
+                        <td>{{accountNumber | bankaccount}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description</th>
+                        <td>{{transactionId}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Amount</th>
+                        <td>{{getTotalPrice() | currency}}</td>
                     </tr>
                 </tbody>
             </table>

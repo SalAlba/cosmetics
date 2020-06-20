@@ -74,8 +74,8 @@ export class BasketService {
     return Object.keys(this.basket_.products).length;
   }
 
-  pay() {
-    let basketProduct = this.getBasketForPayment();
+  pay(transactionId: string) {
+    let basketProduct = this.getBasketForPayment(transactionId);
     console.log('====> Start Email <=====');
     this.emailService.sendOrderEmail(basketProduct);
     console.log('====> End Email <=====');
@@ -95,12 +95,11 @@ export class BasketService {
     console.log('====> End Pay <=====');
   }
 
-  getBasketForPayment(): Payment {
-    let d = `Profhilo-${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+  getBasketForPayment(transactionId: string): Payment {
     let payment = {
-      id: d,
+      id: transactionId,
       notifyUrl: `${this.NOTIFY_URL}`,
-      continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${d}`,
+      continueUrl: `${this.NOTIFY_URL}/successfully-end-transaction/${transactionId}`,
       mapper: 'payu',
       description: "test js description",
       // currencyCode: "USD",
