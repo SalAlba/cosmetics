@@ -2,10 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// https://admin.smartcity.cktech.eu/api/v1
+// http://sal.paradise-cosmetic.com/products/
+
 export const environment = {
-  api: 'https://admin.smartcity.cktech.eu/api/v1',
-  notifyUrl: 'http://salalba.cktech.eu',
-  helpEmail: 'info@gmail.com',
+  api: 'http://sal.paradise-cosmetic.com',
+  notifyUrl: 'http://paradise-cosmetic.com',
+  helpEmail: 'info@paradise-cosmetic.com',
   production: false,
   accountNumber: '0347052404860027',
   notificationEmails:[

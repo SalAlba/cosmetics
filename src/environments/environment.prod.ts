@@ -1,10 +1,10 @@
 export const environment = {
-  api: 'https://admin.smartcity.cktech.eu/api/v1',
-  notifyUrl: 'http://salalba.cktech.eu',
-  helpEmail: 'info@gmail.com',
-  production: true,
+  api: 'http://sal.paradise-cosmetic.com',
+  notifyUrl: 'http://paradise-cosmetic.com',
+  helpEmail: 'info@paradise-cosmetic.com',
+  production: false,
   accountNumber: '0347052404860027',
-  notificationEmails: [
+  notificationEmails:[
     'saljan93@live.com',
     'nabhan1008@gmail.com',
   ]

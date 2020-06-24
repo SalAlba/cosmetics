@@ -52,7 +52,9 @@ export class ProductComponent implements OnInit {
   getProduct() {
     this.route.params.subscribe(d => {
       this.productsService.getProductByLink(d.link).subscribe(p => {
-        this.product_ = p;
+        // TODO DEL ...
+        console.log('>>> Product : ', p['product'])
+        this.product_ =  p['product'];
       });
     });
   }

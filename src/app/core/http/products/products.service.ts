@@ -51,8 +51,14 @@ export class ProductsService {
   }
 
   public getProductByLink(link: string): Observable<Product> {
-    this.setSelectedProduct(PRODUCTS.find(d => d.link === link));
-    // return this.http.get<Product>(`${this.BASIC_URL}/products/link/${link}`);
-    return this._selectedProduct;
+    // ...
+    // this.http.get<Product>(`${this.BASIC_URL}/products/link/${link}`).subscribe(d => this.setSelectedProduct(d['product']));
+    // return this._selectedProduct;
+    console.log('link : ', link)
+    return this.http.get<Product>(`${this.BASIC_URL}/products/link/${link}`);
+
+    // TODO DEL ...
+    // this.setSelectedProduct(PRODUCTS.find(d => d.link === link));
+    // return this._selectedProduct;
   }
 }
