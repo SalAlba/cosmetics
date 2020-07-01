@@ -26,6 +26,8 @@ export class ProductComponent implements OnInit {
 
   // _selectedProduct: Observable<Product>;
   product_: Product;
+  productQuantity: number = 0;
+
   // ...
   // galleryOptions: NgxGalleryOptions[];
   // galleryImages: NgxGalleryImage[];
@@ -54,7 +56,8 @@ export class ProductComponent implements OnInit {
       this.productsService.getProductByLink(d.link).subscribe(p => {
         // TODO DEL ...
         console.log('>>> Product : ', p['product'])
-        this.product_ =  p['product'];
+        this.product_ = p['product'];
+        this.productQuantity = this.basketService.getBasketProducts().find(d => d._id == this.product_._id).quantity || 0;
       });
     });
   }
@@ -90,7 +93,7 @@ export class ProductComponent implements OnInit {
   }
 
 
-  sanitizeHTML(data:string){
+  sanitizeHTML(data: string) {
     return this.sanitizer.bypassSecurityTrustHtml(data);
   }
 

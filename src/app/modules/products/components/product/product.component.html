@@ -121,9 +121,12 @@
                             </div>
                         </div>
                     </div> -->
+                <!-- <pre>{{productQuantity}}</pre> -->
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-dark mb-2" (click)="addToBasket()"><i
-                            class="fa fa-shopping-basket"></i> Add to cart</button>
+                    <button type="submit" class="btn btn-dark mb-2" (click)="addToBasket()">
+                        <i class="fa fa-shopping-basket"></i> Add to cart
+                    </button>
+                    <input type="number" [(ngModel)]="productQuantity" class="quantity" />
                 </div>
             </div>
             <!-- </form> -->
