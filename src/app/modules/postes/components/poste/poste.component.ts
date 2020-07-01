@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { Title, Meta } from '@angular/platform-browser';
 
 // services ...
-import { PostesService } from '../../../../core/http/postes/postes.service';
+import { PostesService } from '@shared/providers/postes/postes.service';
 
 import { Post } from '../../../../shared/models/post.model';
 import { DESCRITPTION } from '../../../../shared/mock/mock-desc';

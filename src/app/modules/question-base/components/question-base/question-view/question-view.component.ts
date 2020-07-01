@@ -5,7 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {MarkdownService} from 'ngx-markdown';
 import {EditorOption} from 'angular-markdown-editor';
 import {ActivatedRoute} from '@angular/router';
-import {QuestionBaseService} from '../../../../../core/http/question-base/question-base.service';
+import {QuestionBaseService} from '@shared/providers/question-base/question-base.service';
 import {getLevelClass} from '../../../../../shared/utils/utils';
 @Component({
   selector: 'app-question-view',

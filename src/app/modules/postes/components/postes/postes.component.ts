@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 // services ...
-import { PostesService } from '../../../../core/http/postes/postes.service';
+import { PostesService } from '@shared/providers/postes/postes.service';
 
 // models ...
 import { Post } from '../../../../shared/models/post.model';

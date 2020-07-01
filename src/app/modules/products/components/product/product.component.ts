@@ -3,8 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 // import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { Observable } from 'rxjs';
 
-import { ProductsService } from "../../../../core/http/products/products.service";
-import { BasketService } from "../../../../shared/providers/basket.service";
+import { ProductsService } from "@shared/providers/products/products.service";
+import { BasketService } from "@shared/providers/basket.service";
 import { Product } from "../../../../shared/models/product.model";
 import {
   ReactiveFormsModule,

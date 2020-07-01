@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Category, Group, Question, QuestionFilter} from '../../../../shared/models/q.model';
 import {TagModelClass} from 'ngx-chips/core/accessor';
-import {QuestionBaseService} from '../../../../core/http/question-base/question-base.service';
+import {QuestionBaseService} from '@shared/providers/question-base/question-base.service';
 import {EditorOption} from 'angular-markdown-editor';
 import {MarkdownService} from 'ngx-markdown';
 import {NgForm} from '@angular/forms';

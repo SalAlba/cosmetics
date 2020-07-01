@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 // // services ...
-import { ProductsService } from "../../../core/http/products/products.service";
+import { ProductsService } from "@shared/providers/products/products.service";
 import { Product } from '../../models/product.model';
 
 // // models ...

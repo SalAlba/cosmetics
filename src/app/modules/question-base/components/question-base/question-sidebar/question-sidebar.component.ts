@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Category, Group, QuestionFilter} from '../../../../../shared/models/q.model';
 import {TagModelClass} from 'ngx-chips/core/accessor';
-import {QuestionBaseService} from '../../../../../core/http/question-base/question-base.service';
+import {QuestionBaseService} from '@shared/providers/question-base/question-base.service';
 import {getLevelClassIfCheckLvlEqualsSelectedLvl, getLevelIfCheckLvlIsNotSelectedLvl} from '../../../../../shared/utils/utils';
 
 @Component({
