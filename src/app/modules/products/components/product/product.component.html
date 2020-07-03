@@ -126,7 +126,7 @@
                     <button type="submit" class="btn btn-dark mb-2" (click)="addToBasket()">
                         <i class="fa fa-shopping-basket"></i> Add to cart
                     </button>
-                    <input type="number" [(ngModel)]="product_.quantity" class="quantity" />
+                    <input type="number" [(ngModel)]="product_.quantity" class="quantity" min="0"/>
                 </div>
             </div>
             <!-- </form> -->
