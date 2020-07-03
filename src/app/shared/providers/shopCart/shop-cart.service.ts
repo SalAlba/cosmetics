@@ -132,8 +132,9 @@ export class ShopCartService {
     console.log('====> End Email <=====');
     console.log('====> Start Pay <=====');
 
+    let totalPrice = this.getTotalPrice();
     this.restCart();
-    this.router.navigate([`/successfully-end-transaction/${transactionId}`], { queryParams: { totalPrice: this.getTotalPrice() } });
+    this.router.navigate([`/successfully-end-transaction/${transactionId}`], { queryParams: { totalPrice: totalPrice } });
     // this.paymentsService.createNewOrder(basketProduct).subscribe(
     //   d => {
     //     console.log(d);
