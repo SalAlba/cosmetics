@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import { ProductsService } from "@shared/providers/products/products.service";
 import { BasketService } from "@shared/providers/basket.service";
+import { ShopCartService } from "@shared/providers/shopCart/shop-cart.service";
 import { Product } from "../../../../shared/models/product.model";
 import {
   ReactiveFormsModule,
@@ -39,6 +40,7 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private basketService: BasketService,
     private productsService: ProductsService,
+    private shopCartService: ShopCartService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -54,9 +56,10 @@ export class ProductComponent implements OnInit {
     this.route.params.subscribe(d => {
       this.productsService.getProductByLink(d.link).subscribe(p => {
         // TODO DEL ...
-        console.log('>>> Product : ', p['product'])
+        console.log('>>> Product : ', p)
         this.product_ = p['product'];
-        this.productQuantity = this.basketService.getBasketProducts().find(d => d._id == this.product_._id).quantity || 0;
+        // this.productQuantity = this.basketService.getBasketProducts().find(d => d._id == this.product_._id).quantity || 0;
+        this.product_.quantity = this.shopCartService.getProductQuantity(this.product_._id);
       });
     });
   }
@@ -74,15 +77,18 @@ export class ProductComponent implements OnInit {
 
 
   addToBasket() {
-    this.basketService.addProductToBasket(this.product_);
+    this.shopCartService.addProduct(this.product_);
+    // this.basketService.addProductToBasket(this.product_);
   }
 
+  // TODO DEL ...
   increaseQuantity() {
     // this._selectedProduct.subscribe(d => {
     //   d.quantity += 1;
     // });
   }
 
+  // TODO DEL ...
   decreaseQuantity() {
     // this._selectedProduct.subscribe(d => {
     //   if (d.quantity >= 1) {

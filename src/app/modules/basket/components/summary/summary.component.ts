@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../../../../shared/models/product.model";
-import { Buyer } from "../../../../shared/models/buyer.model";
-import { BasketService } from "../../../../shared/providers/basket.service";
-import { LinksService } from "../../../../shared/providers/links/links.service";
+import { Product } from "@shared/models/product.model";
+import { Buyer } from "@shared/models/buyer.model";
+import { BasketService } from "@shared/providers/basket.service";
+import { ShopCartService } from "@shared/providers/shopCart/shop-cart.service";
+
+import { LinksService } from "@shared/providers/links/links.service";
 import { environment } from "../../../../../environments/environment";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,6 +20,7 @@ export class SummaryComponent implements OnInit {
   accountNumber = environment.accountNumber;
 
   constructor(
+    private shopCartService: ShopCartService,
     private basketService: BasketService,
     private linksService: LinksService,
   ) { }
@@ -30,11 +33,13 @@ export class SummaryComponent implements OnInit {
   }
 
   getBasketProducts(): Product[] {
-    return this.basketService.getBasketProducts();
+    // return this.basketService.getBasketProducts();
+    return this.shopCartService.getProductsAsArray();
   }
 
   getBasketBuyer(): Buyer {
-    return this.basketService.getBasketBuyer();
+    // return this.basketService.getBasketBuyer();
+    return this.shopCartService.getBuyerFromLocalStorage();
   }
 
   getUrl(product: Product) {
@@ -42,14 +47,21 @@ export class SummaryComponent implements OnInit {
   }
 
   getShippingCost(): number {
-    return this.basketService.getShippingCost();
+    // return this.basketService.getShippingCost();
+    return this.shopCartService.getShippingCost();
   }
 
   getTotalPrice(): number {
-    return this.basketService.getTotalPrice();
+    // return this.basketService.getTotalPrice();
+    return this.shopCartService.getTotalPrice();
   }
 
   pay() {
-    this.basketService.pay(this.transactionId);
+    // this.basketService.pay(this.transactionId);
+    if (this.shopCartService.getNumberOfProducts() < 1) {
+      alert('No product to pay 😄')
+      return;
+    }
+    this.shopCartService.pay(this.transactionId);
   }
 }

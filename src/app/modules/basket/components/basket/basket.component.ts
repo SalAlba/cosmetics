@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ShopCartService } from "@shared/providers/shopCart/shop-cart.service";
 
-import { Product } from "../../../../shared/models/product.model";
-import { Buyer } from "../../../../shared/models/buyer.model";
-import { BasketService } from "../../../../shared/providers/basket.service";
-import { LinksService } from "../../../../shared/providers/links/links.service";
+
+import { Product } from "@shared/models/product.model";
+import { Buyer } from "@shared/models/buyer.model";
+import { BasketService } from "@shared/providers/basket.service";
+import { LinksService } from "@shared/providers/links/links.service";
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -30,17 +32,25 @@ export class BasketComponent implements OnInit {
     private basketService: BasketService,
     private linksService: LinksService,
     private router: Router,
+    private shopCartService: ShopCartService
   ) { }
 
   ngOnInit(): void {
-    this.products = this.getBasketProducts();
-    this.buyer = this.getBasketBuyer();
-    this.countries = this.basketService.get_list_of_countries();
+    // TODO ...
+    // this.products = this.getBasketProducts();
+    // this.buyer = this.getBasketBuyer();
+
+    // TODO ...
+    this.products = this.shopCartService.getProductsAsArray();
+    this.buyer = this.shopCartService.getBuyerFromLocalStorage();
+    console.log(this.products);
+
+    // TODO NO NEED ...
+    // this.countries = this.basketService.get_list_of_countries();
     // this.buyer['_selectedCountry'] = {
     //   name: '',
     //   state: []
     // }
-    // this.createForm();
   }
 
   createFormControls() {
@@ -52,27 +62,37 @@ export class BasketComponent implements OnInit {
   }
 
   createForm() {
-    this.productCart = new FormGroup(this.createFormControls());
+    // this.productCart = new FormGroup(this.createFormControls());
   }
 
   getBasketProducts(): Product[] {
-    return this.basketService.getBasketProducts();
+    // TODO ...
+    // return this.basketService.getBasketProducts();
+    return this.products;
   }
 
   getBasketBuyer(): Buyer {
-    return this.basketService.getBasketBuyer();
+    // TODO ...
+    // return this.basketService.getBasketBuyer();
+    return this.buyer;
   }
 
-  getShippingCost():number {
-    return this.basketService.getShippingCost();
+  getShippingCost(): number {
+    // TODO ...
+    // return this.basketService.getShippingCost();
+    return this.shopCartService.getShippingCost();
   }
 
-  getTotalPrice():number {
-    return this.basketService.getTotalPrice();
+  getTotalPrice(): number {
+    // TODO ...
+    // return this.basketService.getTotalPrice();
+    return this.shopCartService.getTotalPrice();
   }
 
   getNumberOfProducts() {
-    return this.basketService.getNumberOfProducts();
+    // TODO ..
+    // return this.basketService.getNumberOfProducts();
+    return this.shopCartService.getNumberOfProducts();
   }
 
   removeFromBasket(product: Product) {
@@ -80,6 +100,10 @@ export class BasketComponent implements OnInit {
   }
 
   pay() {
+    if (this.shopCartService.getNumberOfProducts() < 1) {
+      alert('No product to pay 😄')
+      return;
+    }
     this.router.navigate(['/basket-summary']);
     // this.basketService.pay();
   }
