@@ -30,6 +30,10 @@ export class SummaryComponent implements OnInit {
     this.buyer = this.getBasketBuyer();
     // this.transactionId = `Profhilo-${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
     this.transactionId = uuidv4().split('-')[0];
+
+
+    // ...
+    console.log(this.buyer);
   }
 
   getBasketProducts(): Product[] {

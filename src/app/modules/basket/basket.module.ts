@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // modules ...
 import { CoreModule } from '../../core/core.module';
@@ -20,6 +20,7 @@ import { SummaryComponent } from './components/summary/summary.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     CoreModule,
     SharedModule,
     BasketRoutingModule

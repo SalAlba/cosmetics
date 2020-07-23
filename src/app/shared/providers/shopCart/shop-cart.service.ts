@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cart, CartProduct } from "@shared/models/cart.model";
 import { Product } from "@shared/models/product.model";
 import { Payment } from "@shared/models/payment.model";
+import { Buyer } from "@shared/models/buyer.model";
 
 import { PaymentsService } from "@shared/providers/payments/payments.service";
 import { EmailService } from "@shared/providers/email/email.service";
@@ -30,6 +31,11 @@ export class ShopCartService {
 
   addProduct(product: CartProduct) {
     this.cart.product.set(product._id, product);
+    this.setCartToLocalStorage();
+  }
+
+  addBuyer(buyer: Buyer) {
+    this.cart.buyer = buyer;
     this.setCartToLocalStorage();
   }
 
